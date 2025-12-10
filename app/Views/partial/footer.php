@@ -9,14 +9,14 @@ use Config\OSPOS;
 
     <div id="footer">
         <div class="jumbotron push-spaces">
-            <strong>
+            <!-- <strong>
                 <?= lang('Common.copyrights', [date('Y')]) ?> ·
-                <a href="https://opensourcepos.org" target="_blank"><?= lang('Common.website') ?></a> ·
+                <a href="#" target="_blank"><?= lang('Common.website') ?></a> ·
                 <?= esc(config('App')->application_version) ?> -
-                <a target="_blank" href="https://github.com/opensourcepos/opensourcepos/commit/<?= esc(config(OSPOS::class)->commit_sha1) ?>">
+                <a target="_blank" href="#">
                     <?= esc(substr(config(OSPOS::class)->commit_sha1, 0, 6)); ?>
                 </a>
-            </strong>.
+            </strong>. -->
         </div>
     </div>
 </body>
