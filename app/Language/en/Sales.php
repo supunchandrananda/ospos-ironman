@@ -185,7 +185,7 @@ return [
     "show_invoice"                     => "Show Invoice",
     "show_receipt"                     => "Show Receipt",
     "start_typing_customer_name"       => "Start typing customer details...",
-    "start_typing_item_name"           => "Start typing Item Name or scan Barcode...",
+    "start_typing_item_name"           => "Start typing Item Name or Part No...",
     "stock"                            => "Stock",
     "stock_location"                   => "Stock Location",
     "sub_total"                        => "Subtotal",

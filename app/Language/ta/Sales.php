@@ -184,7 +184,7 @@ return [
     "show_invoice"                     => "விலைப்பட்டியலைக் காட்டு",
     "show_receipt"                     => "ரசீதைக் காட்டு",
     "start_typing_customer_name"       => "வாடிக்கையாளர் விவரங்களைத் தட்டச்சு செய்யத் தொடங்கு...",
-    "start_typing_item_name"           => "Start typing Item Name or scan Barcode...",
+    "start_typing_item_name"           => "Start typing Item Name or Part No...",
     "stock"                            => "Stock",
     "stock_location"                   => "Stock Location",
     "sub_total"                        => "Subtotal",
