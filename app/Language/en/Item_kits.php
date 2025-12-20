@@ -15,7 +15,7 @@ return [
     "find_kit_item"             => "Kit Item",
     "info"                      => "Item Kit Info",
     "item"                      => "Item",
-    "item_kit_number"           => "Barcode",
+    "item_kit_number"           => "Item Kit No",
     "item_kit_number_duplicate" => "Item Kit Number is already present in the database.",
     "item_number"               => "",
     "item_number_duplicate"     => "",

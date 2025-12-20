@@ -63,7 +63,7 @@ return [
     "item"                                    => "Item",
     "item_count"                              => "Filter Item Count",
     "item_name"                               => "Item Name",
-    "item_number"                             => "Barcode",
+    "item_number"                             => "Part No",
     "items"                                   => "Items",
     "items_purchased"                         => "Items Purchased",
     "items_received"                          => "Items Received",

@@ -58,7 +58,7 @@ return [
     "is_serialized"                      => "Item has Serial Number",
     "item"                               => "Item",
     "item_id"                            => "",
-    "item_number"                        => "Barcode",
+    "item_number"                        => "Part No",
     "item_number_duplicate"              => "Item Number is already present in the database.",
     "kit"                                => "Kit",
     "location"                           => "Location",
