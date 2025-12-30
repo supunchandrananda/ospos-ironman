@@ -205,7 +205,8 @@
                 <li>Bullbars, Side Steps/Rails, Underbody Protection, and Rated Recovery Points: 3-year warranty
                     (applies only to directly Ironman imported products, excluding third-party colour coding).</li>
                 <li>Monster Winches: 5 years mechanical, 1 year electrical coverage.</li>
-                <li>Towbars, Vehicle Lighting, and Vehicle Power: 3-year warranty.</li>
+                <li>Towbars: 3-year warranty (applies only to directly Ironman imported products).</li>
+                <li>Vehicle Lighting, and Vehicle Power: 3-year warranty.</li>
                 <li>Alu-Cab Products:
                     <ul>
                         <li>Purchased before 18 Nov 2023: 1 year moving parts, 3 years structural coverage.</li>
