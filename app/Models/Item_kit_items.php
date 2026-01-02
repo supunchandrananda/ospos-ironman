@@ -64,7 +64,13 @@ class Item_kit_items extends Model
 
             foreach ($item_kit_items_data as $row) {
                 $row['item_kit_id'] = $item_kit_id;
-                $success &= $builder->insert($row);
+                $insertResult = $builder->insert($row);
+                if ($insertResult === false) {
+                    $dbError = $this->db->error();
+                    log_message('error', 'Item_kit_items::save_value insert failed: ' . json_encode($dbError) . ' Data: ' . json_encode($row));
+                }
+
+                $success &= $insertResult;
             }
         }
 

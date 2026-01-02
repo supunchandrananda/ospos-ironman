@@ -45,6 +45,17 @@ FROM temp_import t
 JOIN ospos_items i ON i.item_id = t.item_id
 ORDER BY t.item_id;
 
+-- Force-set master item cost and unit price from CSV when provided
+UPDATE ospos_items i
+JOIN temp_import t ON i.item_id = t.item_id
+SET i.cost_price = t.csv_cost_price
+WHERE t.csv_cost_price > 0;
+
+UPDATE ospos_items i
+JOIN temp_import t ON i.item_id = t.item_id
+SET i.unit_price = t.csv_unit_price
+WHERE t.csv_unit_price > 0;
+
 -- Update item_quantities (insert or update with qty)
 INSERT INTO ospos_item_quantities (item_id, location_id, quantity)
 SELECT item_id, location_id, qty FROM temp_import

@@ -168,12 +168,22 @@ class Item_kit extends Model
                 return true;
             }
 
+            // Log DB error for diagnostics
+            $dbError = $this->db->error();
+            log_message('error', 'Item_kit::save_value insert failed: ' . json_encode($dbError) . ' Data: ' . json_encode($item_kit_data));
+
             return false;
         }
 
         $builder->where('item_kit_id', $item_kit_id);
 
-        return $builder->update($item_kit_data);
+        $result = $builder->update($item_kit_data);
+        if ($result === false) {
+            $dbError = $this->db->error();
+            log_message('error', 'Item_kit::save_value update failed: ' . json_encode($dbError) . ' ID: ' . $item_kit_id . ' Data: ' . json_encode($item_kit_data));
+        }
+
+        return $result;
     }
 
     /**
