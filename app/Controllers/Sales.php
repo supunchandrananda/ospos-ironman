@@ -850,6 +850,7 @@ class Sales extends Secure_Controller
                 $data['error_message'] = lang('Sales.transaction_failed');
             } else {
                 $data['barcode'] = $this->barcode_lib->generate_receipt_barcode($data['sale_id']);
+                $data['page_title'] = 'Receipt-' . date('Ymd-His', time()) . '-IM4x4-POS' . $data['sale_id_num'];
                 echo view('sales/receipt', $data);
                 $this->sale_lib->clear_all();
             }
@@ -891,7 +892,9 @@ class Sales extends Secure_Controller
 
             // Load PDF helper
             helper(['dompdf', 'file']);
-            $filename = sys_get_temp_dir() . '/' . lang('Sales.' . $type) . '-' . str_replace('/', '-', $number) . '.pdf';
+            $dt = date('Ymd-His');
+            $base = ucfirst($type) . '-' . $dt . '-IM4x4-POS' . ($sale_data['sale_id_num'] ?? $sale_id);
+            $filename = sys_get_temp_dir() . '/' . $base . '.pdf';
             if (file_put_contents($filename, create_pdf($html)) !== false) {
                 $result = $this->email_lib->sendEmail($to, $subject, $text, $filename);
             }
@@ -1228,6 +1231,7 @@ class Sales extends Secure_Controller
     public function getReceipt(int $sale_id): void
     {
         $data = $this->_load_sale_data($sale_id);
+        $data['page_title'] = 'Receipt-' . date('Ymd-His', time()) . 'IM4x4-POS' . $sale_id;
         echo view('sales/receipt', $data);
         $this->sale_lib->clear_all();
     }

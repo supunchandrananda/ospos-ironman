@@ -76,6 +76,9 @@
         .muted {
             color: #555;
         }
+        .child-indent {
+            padding-left: 30px;
+        }
     </style>
 </head>
 
@@ -139,13 +142,46 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($cart as $item) {
-                if ($item['print_option'] == PRINT_YES) { ?>
+            <?php
+            $inside_kit = false;
+            foreach ($cart as $item) {
+                if ($item['print_option'] == PRINT_YES) {
+                    // Default rendered values
+                    $render_qty = to_quantity_decimals($item['quantity']);
+                    $render_price = number_format($item['price'], 2);
+                    $render_total = number_format($item['total'], 2);
+
+                    if ($item['item_type'] == ITEM_KIT) {
+                        // Kit parent: show normally and mark inside_kit
+                        $inside_kit = true;
+                    } else {
+                        // Child lines after a kit: if they have zero price/total,
+                        // print the name but hide qty/price/total values
+                        if ($inside_kit && floatval($item['price']) == 0.0 && floatval($item['total']) == 0.0) {
+                            $render_qty = '';
+                            $render_price = '';
+                            $render_total = '';
+                            // keep inside_kit as true while kit children continue
+                        } else {
+                            // Not a kit child with zero value -> no longer inside kit
+                            $inside_kit = false;
+                        }
+                    }
+            ?>
+                    <?php
+                        // Build display name: item name + item number (if present) + attribute values
+                        $display_name = $item['name'];
+                        if (!empty($item['item_number'])) {
+                            $display_name .= ' (' . $item['item_number'] . ')';
+                        }
+                        $display_name .= ' ' . ($item['attribute_values'] ?? '');
+                        $display_name = trim($display_name);
+                    ?>
                     <tr>
-                        <td><?= esc(trim($item['name'] . ' ' . $item['attribute_values'])) ?></td>
-                        <td class="text-right"><?= to_quantity_decimals($item['quantity']) ?></td>
-                        <td class="text-right"><?= number_format($item['price'], 2) ?></td>
-                        <td class="text-right"><?= number_format($item['total'], 2) ?></td>
+                        <td<?= ($inside_kit && $render_qty === '') ? ' class="child-indent"' : '' ?>><?= ($inside_kit && $render_qty === '') ? '– ' : '' ?><?= esc($display_name) ?></td>
+                        <td class="text-right"><?= $render_qty ?></td>
+                        <td class="text-right"><?= $render_price ?></td>
+                        <td class="text-right"><?= $render_total ?></td>
                     </tr>
                 <?php }
             } ?>
